@@ -1,0 +1,461 @@
+\documentclass{article}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{float}
+\usepackage{graphicx}
+
+\title{AULA3: Exercício teórico métodos de ordenação quadrática}
+\author{Aluno: Gian Franco Joel Condori Luna}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercices}
+\setcounter{section}{1}
+\subsection {(0,75) Execute o passo-a-passo dos algoritmos seleção, inserção e bolha nos seguintes elementos: \\
+\\
+\{22, 35, 2, 1, 13, 7\}}
+
+\subsubsection{Seleção:}
+
+\[
+i = 0 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+\textcolor{red}{22} & 35 & 2 & \textcolor{red}{1} & 13 & 7 \\ 
+\hline
+\end{array}
+\]
+
+\[
+i = 1 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & \textcolor{red}{35} & \textcolor{red}{2} & 22 & 13 & 7 \\ 
+\hline
+\end{array}
+\]
+
+\[
+i = 2 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & \textcolor{red}{35} & 22 & 13 & \textcolor{red}{7} \\  
+\hline
+\end{array}
+\]
+
+\[
+i = 3 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 7 & \textcolor{red}{22} & \textcolor{red}{13} & 35 \\  
+\hline
+\end{array}
+\]
+
+\[
+i = 4 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 7 & 13 & \textcolor{red}{22} & 35 \\  
+\hline
+\end{array}
+\]
+
+\[
+    i = 5 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 7 & 13 & 22 & \textcolor{red}{35} \\  
+\hline
+\end{array}
+\]
+
+
+\subsubsection{Inserção:}
+
+\[
+Inicio \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+22 & 35 & 2 & 1 & 13 & 7 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad i=1 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+\textcolor{red}{22} & \textcolor{red}{35} & 2 & 22 & 13 & 7 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+ 22 & \textcolor{red}{35} & 2 & 1 & 13 & 7 \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad i = 2 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+22 & \textcolor{red}{35} & \textcolor{red}{2} & 1 & 13 & 7 \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+\textcolor{red}{22} & \textcolor{red}{2} & 35 & 1 & 13 & 7 \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+2 & 22 & 35 & 1 & 13 & 7 \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad i = 3 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+2 & 22 & \textcolor{red}{35} & \textcolor{red}{1} & 13 & 7 \\   
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+2 & \textcolor{red}{22} & \textcolor{red}{1} & 35 &  13 & 7 \\   
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+\textcolor{red}{2} & \textcolor{red}{1} & 22 &  35 &  13 & 7 \\   
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 22 &  35 &  13 & 7 \\   
+\hline
+\end{array}
+\]
+
+\[
+    \quad i = 4 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 22 &  \textcolor{red}{35} &  \textcolor{red}{13} & 7 \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & \textcolor{red}{22} &  \textcolor{red}{13} &  35 & 7 \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & \textcolor{red}{2} & \textcolor{red}{13} &  22 &  35 & 7 \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 13 &  22 &  35 & 7 \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad i = 5 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 13 &  22 &  \textcolor{red}{35} & \textcolor{red}{7} \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 13 &  \textcolor{red}{22} &  \textcolor{red}{7} & 35 \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & \textcolor{red}{13} &  \textcolor{red}{7} &  22 & 35 \\  
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & \textcolor{red}{2} & \textcolor{red}{7} &  13 &  22 & 35 \\  
+\hline
+\end{array}
+\]
+
+
+\[
+    \quad Fin \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 7 &  13 &  22 & 35 \\  
+\hline
+\end{array}
+\]
+
+\subsubsection{Bolha:}
+
+
+\[
+Inicio \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+22 & 35 & 2 & 1 & 13 & 7 \\ 
+\hline
+\end{array}
+\]
+
+\[
+i = 0 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+22 & 35 & 2 & 1 & \textcolor{red}{13} & \textcolor{red}{7} \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+22 & 35 & 2 & \textcolor{red}{1} & \textcolor{red}{7} & 13 \\ 
+\hline
+\end{array}
+\]
+
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+22 & 35 & \textcolor{red}{2} & \textcolor{red}{1} & 7 & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+22 & \textcolor{red}{35} & \textcolor{red}{1} & 2 & 7 & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+\textcolor{red}{22} & \textcolor{red}{1} & 35 & 2 & 7 & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 22 & 35 & 2 & 7 & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+i = 1 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 22 & 35 & 2 & \textcolor{red}{7} & \textcolor{red}{13} \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 22 & 35 & \textcolor{red}{2} & \textcolor{red}{7} & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 22 & \textcolor{red}{35} & \textcolor{red}{2} & 7 & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & \textcolor{red}{22} & \textcolor{red}{2} & 35 & 7 & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 22 & 35 & 7 & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+i = 2 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 22 & 35 & \textcolor{red}{7} & \textcolor{red}{13} \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 22 & \textcolor{red}{35} & \textcolor{red}{7} & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & \textcolor{red}{22} & \textcolor{red}{7} & 35 & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 7 & 22 & 35 & 13 \\ 
+\hline
+\end{array}
+\]
+
+\[
+i = 3 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 7 & 22 & \textcolor{red}{35} & \textcolor{red}{13} \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 7 & \textcolor{red}{22} & \textcolor{red}{13} & 35 \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad => \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 7 & 13 & 22 & 35 \\ 
+\hline
+\end{array}
+\]
+
+\[
+i = 4 \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 7 & 13 & \textcolor{red}{22} & \textcolor{red}{35} \\ 
+\hline
+\end{array}
+\]
+
+\[
+    \quad Fin \quad
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+1 & 2 & 7 & 13 & 22 & 35 \\ 
+\hline
+\end{array}
+\]
+
+\subsection {(0,25) Faça um resumo/comparativo dos três algoritmos (seleção, inserção e bolha).}
+
+\begin{table}[H]
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|c|c|c|}
+        \hline
+                    & Seleção & Inserção & Bolha \\ \hline
+        Melhor caso & 0(n²)   & 0(n)     & 0(n²) \\ \hline
+        Pior caso   & 0(n²)   & 0(n²)    & 0(n²) \\ \hline
+        Estavél     & Não     & Sim      & Sim   \\ \hline
+        \end{tabular}
+    }
+    \caption{Comparativo dos três algoritmos quadráticos}
+
+\end{table}
+
+\end{document}
