@@ -1,0 +1,236 @@
+\documentclass{article}
+\usepackage{array}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{darkgreen}{rgb}{0.0, 0.4, 0.0}
+
+\lstdefinestyle{mypython}{
+    language=Python,
+    backgroundcolor=\color{lightgray!20}, % Color de fondo para el código
+    keywordstyle=\color{blue},            % Color para palabras clave
+    stringstyle=\color{red},              % Color para strings
+    commentstyle=\color{darkgreen},           % Color para comentarios
+    showstringspaces=false,               % Ocultar espacios en cadenas
+    basicstyle=\ttfamily\footnotesize,    % Estilo básico del código
+    breaklines=true,                      % Habilitar el salto de línea automático
+    frame=single,                         % Cuadro alrededor del código
+}
+
+\renewcommand\thesubsection{\arabic{subsection}} % Hace que subsección use solo números (1, 2, 3, etc.)
+\setcounter{secnumdepth}{2} % Asegura que las subsecciones se numerarán
+
+\title{Aula 06 - Exercício prático Complexidade de problemas}
+\author{Aluno: Gian Franco Joel Condori Luna}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercices}
+\setcounter{section}{1}
+\subsection {(0,5) Apresente um algoritmo para o problema que pode ser resolvido em tempo
+polinomial (classe P) que vc pesquisou no exercício prático. Pode usar algoritmo
+seu/de outros autores, citar a fonte! Se possível mostrar a execução do algoritmo
+(print do resultado) para um pequeno dataset.}
+
+\subsection*{Solução:}
+
+\subsection*{Problema do caminho mais curto em grafos}
+
+\subsubsection{Explicação do Problema}
+
+Dado um grafo direcionado com pesos não negativos, o objetivo é 
+encontrar o caminho mais curto de um nó de origem para todos os 
+outros nós. O algoritmo de Dijkstra oferece uma solução eficiente 
+para esse problema.
+
+\subsubsection{Algoritmo de Dijkstra}
+A seguir, apresento um pseudocódigo do algoritmo de Dijkstra:
+\begin{enumerate}
+    \item Inicialize todas as distâncias do nó de origem para todos 
+    os outros nós como infinito, exceto a distância até a origem, 
+    que será 0.
+    \item Coloque todos os nós em um conjunto de nós não visitados.
+    \item Selecione o nó não visitado com a menor distância e marque 
+    esse nó como visitado.
+    \item Para cada vizinho do nó atual, calcule a distância 
+    tentativa do nó de origem até esse vizinho passando pelo nó atual. 
+    Se essa distância for menor que a distância armazenada 
+    anteriormente, atualize-a.
+    \item Repita o processo até que todos os nós tenham sido 
+    visitados ou que não haja um nó alcançável.
+\end{enumerate}
+
+\subsubsection{Código em Python:}
+  \begin{lstlisting}[style=mypython]
+    # Fonte: ChatGPT
+    # Python 3.12
+    import heapq
+
+    def dijkstra(grafo, inicio):
+        # Inicializar as distancias e a fila de prioridade
+        distancias = {vertice: float('inf') for vertice in grafo}
+        distancias[inicio] = 0
+        fila_prioridade = [(0, inicio)]
+        
+        while fila_prioridade:
+            distancia_atual, vertice_atual = heapq.heappop(fila_prioridade)
+
+            # Ignorar se ja encontramos uma distancia menor
+            if distancia_atual > distancias[vertice_atual]:
+                continue
+
+            # Relaxamento das arestas
+            for vizinho, peso in grafo[vertice_atual].items():
+                distancia = distancia_atual + peso
+
+                # Se encontrarmos um caminho mais curto
+                if distancia < distancias[vizinho]:
+                    distancias[vizinho] = distancia
+                    heapq.heappush(fila_prioridade, (distancia, vizinho))
+        
+        return distancias
+
+    # Grafo de exemplo
+    grafo = {
+        'A': {'B': 1, 'C': 4},
+        'B': {'A': 1, 'C': 2, 'D': 5},
+        'C': {'A': 4, 'B': 2, 'D': 1},
+        'D': {'B': 5, 'C': 1}
+    }
+
+    # Executar Dijkstra
+    vertice_inicial = 'A'
+    distancias = dijkstra(grafo, vertice_inicial)
+
+    # Imprimir resultados
+    print(f"Distancias desde {vertice_inicial}:")
+    for vertice, distancia in distancias.items():
+        print(f"Distancia ate {vertice}: {distancia}")
+
+  \end{lstlisting}
+
+\subsubsection{Execução do algoritmo}
+Para o pequeno conjunto de dados representado pelo grafo de exemplo, 
+obtemos as distâncias mínimas do vértice 'A' para todos os outros 
+vértices:  
+\begin{lstlisting}[style=mypython]
+  Distancias desde A:
+  Distancia ate A: 0
+  Distancia ate B: 1
+  Distancia ate C: 3
+  Distancia ate D: 4    
+\end{lstlisting}
+
+\subsubsection{Fontes Consultadas}
+\begin{itemize}
+    \item Cormen, T. H., Leiserson, C. E., Rivest, R. L., \& Stein, C. (2009). Introduction to Algorithms (3rd ed.). MIT Press.
+    \item ChatGPT 
+\end{itemize}
+
+
+
+
+
+\subsection {(0,5) Apresente um algoritmo para o problema que pode ser resolvido em tempo não
+polinomial (classe NP) que vc pesquisou no exercício prático. Pode usar algoritmo
+seu/de outros autores, citar a fonte! Se possível mostrar a execução do algoritmo
+(print do resultado) para um pequeno dataset.}
+
+\subsection*{Solução:}
+\subsection*{Problema do Caixeiro Viajante (TSP - Travelling Salesman Problem)}
+
+\subsubsection{Explicação do Problema}
+Dado um conjunto de cidades e as distâncias entre cada par de 
+cidades, o objetivo do TSP é encontrar o caminho de menor custo que 
+visita todas as cidades uma vez e retorna à cidade de origem. 
+A solução por força bruta, que tenta todas as possíveis permutações 
+de cidades, tem complexidade fatorial (O(n!)), onde $n$ é o número de 
+cidades.
+
+\subsubsection{Algoritmo por Força Bruta}
+Um algoritmo de força bruta gera todas as permutações possíveis das 
+cidades e calcula o custo de cada caminho. O caminho com o menor 
+custo será a solução.
+
+\subsubsection{Código em Python (força bruta)}
+\begin{lstlisting}[style=mypython]
+    # Fonte: ChatGPT
+    # Python: 3.12
+    from itertools import permutations
+
+    # Funcao para calcular o custo total de um caminho
+    def calcular_custo(caminho, matriz_distancias):
+        custo = 0
+        for i in range(len(caminho) - 1):
+            custo += matriz_distancias[caminho[i]][caminho[i+1]]
+        # Adicionar a volta a cidade de origem
+        custo += matriz_distancias[caminho[-1]][caminho[0]]
+        return custo
+    
+    # Algoritmo de forca bruta para resolver o TSP
+    def tsp_forca_bruta(matriz_distancias):
+        n = len(matriz_distancias)
+        cidades = list(range(n))
+        
+        # Gerar todas as permutacoes das cidades
+        caminhos_possiveis = permutations(cidades)
+        
+        # Inicializar o menor custo com infinito
+        menor_custo = float('inf')
+        melhor_caminho = None
+        
+        # Avaliar todos os caminhos possiveis
+        for caminho in caminhos_possiveis:
+            custo_atual = calcular_custo(caminho, matriz_distancias)
+            if custo_atual < menor_custo:
+                menor_custo = custo_atual
+                melhor_caminho = caminho
+        
+        return melhor_caminho, menor_custo
+    
+    # Exemplo de matriz de distancias entre 4 cidades
+    matriz_distancias = [
+        [0, 10, 15, 20],
+        [10, 0, 35, 25],
+        [15, 35, 0, 30],
+        [20, 25, 30, 0]
+    ]
+    
+    # Executar o algoritmo de forca bruta
+    melhor_caminho, menor_custo = tsp_forca_bruta(matriz_distancias)
+    
+    # Imprimir os resultados
+    print(f"Melhor caminho: {melhor_caminho}")
+    print(f"Menor custo: {menor_custo}")
+    
+\end{lstlisting}
+
+\subsubsection{Execução do algoritmo}
+Para o pequeno conjunto de dados representado por 4 cidades, o 
+algoritmo gera todas as permutações de cidades e encontra o caminho 
+de menor custo. A saída pode ser:
+
+\begin{lstlisting}[style=mypython]
+    Melhor caminho: (0, 1, 3, 2)
+    Menor custo: 80
+\end{lstlisting}
+
+Este resultado significa que o caminho mais curto para visitar 
+todas as cidades, partindo da cidade 0, passando por todas as 
+outras e voltando à cidade de origem, tem um custo total de 80 
+unidades.
+
+\subsubsection{Fontes Consultadas}
+\begin{itemize}
+    \item Cormen, T. H., Leiserson, C. E., Rivest, R. L., \& Stein, C. (2009). Introduction to Algorithms (3rd ed.). MIT Press.
+    \item ChatGPT
+\end{itemize}
+
+\end{document}
