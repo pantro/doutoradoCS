@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\renewcommand\thesubsection{\arabic{subsection}} % Hace que subsección use solo números (1, 2, 3, etc.)
+\setcounter{secnumdepth}{2} % Asegura que las subsecciones se numerarán
+
+\title{Aula 07 - Exercício teórico Variações de listas}
+\author{Aluno: Gian Franco Joel Condori Luna}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercices}
+\setcounter{section}{1}
+\subsection {(1,0) Descreva outras variações existentes sobre listas e se elas apresentam alguma
+vantagem em determinada aplicação:}
+\begin{enumerate}[label=\alph*)]
+    \item Listas circulares
+    \item Listas duplamente encadeadas
+    \item Tercer Outra variação que vc tenha visto
+\end{enumerate}
+
+\subsection*{Solução:}
+
+\subsection*{a) Listas Circulares}
+
+As listas circulares são uma variação das listas encadeadas, onde o 
+último nó da lista aponta para o primeiro nó, formando assim um ciclo 
+fechado. Dependendo da implementação, podem ser simplesmente encadeadas 
+(com ponteiros apenas para o próximo elemento) ou duplamente encadeadas 
+(com ponteiros para o próximo e o anterior).
+
+\subsubsection{Características:}
+\begin{itemize}
+    \item Circularidade: O último nó aponta para o primeiro, permitindo que, ao percorrer a lista, o processo se torne infinito sem a necessidade de verificações adicionais.
+    \item Ausência de nó nulo: Não existe um ponteiro que aponte para NULL como nas listas encadeadas tradicionais, tornando-a contínua e ideal para situações que envolvem repetição contínua de elementos.
+    \item Eficiência: Operações como adição e remoção de nós nas extremidades podem ser feitas em tempo constante (O(1)), especialmente se um ponteiro para o final da lista for mantido.
+    
+\end{itemize}
+
+\subsubsection{Vantagens:}
+\begin{itemize}
+    \item Ideal para navegação contínua: Listas circulares são especialmente úteis em aplicações que exigem repetição ou ciclos contínuos de elementos, como em sistemas que utilizam filas de processos ou buffers de dados.
+    \item Uso eficiente de memória: Por não precisar de ponteiros nulos ou verificações de final de lista, pode ser mais eficiente em termos de memória e processamento.
+\end{itemize}
+
+\subsubsection{Aplicações:}
+\begin{itemize}
+    \item Escalonadores de processos: Em sistemas operacionais que utilizam o algoritmo de escalonamento round-robin, onde cada processo recebe um tempo igual de execução, uma lista circular garante que, ao fim da execução de um processo, o sistema automaticamente passe ao próximo sem precisar reiniciar a lista manualmente.
+
+    Exemplo: Em um escalonador de processos, cada nó da lista circular pode representar um processo. Após a execução de um processo, o sistema segue automaticamente para o próximo processo na lista, e quando o último processo é executado, o ciclo recomeça no primeiro processo.
+    
+    \item Jogos Multiplayer: Em jogos baseados em turnos, como jogos de tabuleiro ou cartas, listas circulares podem ser usadas para gerenciar a ordem dos jogadores, garantindo que, após o último jogador, o jogo volte ao primeiro.
+    
+    \item Buffers Circulares (Ring Buffers): Utilizados em sistemas que precisam de armazenamento contínuo de dados, como streams de áudio e vídeo, onde novos dados sobrescrevem os mais antigos à medida que o buffer se preenche.
+\end{itemize}
+
+\subsection*{b) Listas Duplamente Encadeadas}
+
+As listas duplamente encadeadas, ou duplamente ligadas, possuem nós que contêm dois ponteiros: um apontando para o próximo nó e outro para o nó anterior. Isso as diferencia das listas encadeadas simples, que permitem navegação apenas em uma direção (do primeiro para o último nó).
+
+\subsubsection{Características:}
+\begin{itemize}
+    \item Navegação bidirecional: Cada nó tem um ponteiro que permite tanto avançar quanto recuar na lista, facilitando operações que precisam de acesso em ambas direções.
+    \item Maior memória por nó: Devido aos dois ponteiros (para o anterior e o próximo), cada nó de uma lista duplamente encadeada requer mais memória do que um nó de uma lista encadeada simples.
+    \item Facilidade para operações de remoção: Em listas duplamente encadeadas, a remoção de um nó é mais eficiente, pois há acesso direto ao nó anterior e ao próximo, sem necessidade de percorrer a lista inteira.
+    
+\end{itemize}
+
+\subsubsection{Vantagens:}
+\begin{itemize}
+    \item Eficiência na remoção e inserção: Quando se conhece a posição do nó a ser removido ou inserido, as operações são realizadas de forma muito eficiente em tempo constante (O(1)).
+    \item Navegação em ambas direções: É possível mover-se para frente e para trás facilmente, o que é útil em situações onde a navegação reversa é frequente, como em editores de texto ou sistemas de navegação de páginas.  
+
+\end{itemize}
+
+\subsubsection{Aplicações:}
+\begin{itemize}
+    \item Navegadores Web: Muitos navegadores web usam listas duplamente encadeadas para gerenciar o histórico de navegação. Quando o usuário clica no botão "voltar", o navegador acessa o nó anterior na lista (a página anterior), e ao clicar em "avançar", ele acessa o próximo nó (a página seguinte).
+
+    \item Editor de Texto: Em um editor de texto, cada caractere ou linha pode ser representado por um nó em uma lista duplamente encadeada. O cursor pode mover-se tanto para a esquerda quanto para a direita, facilitando a inserção, remoção e modificação de texto de forma eficiente.
+    
+    \item Gerenciamento de memória: Em alguns sistemas de gerenciamento de memória, listas duplamente encadeadas são usadas para manter uma lista de blocos de memória livres e ocupados. Isso permite a fusão rápida de blocos adjacentes de memória durante a liberação de memória.
+    
+    \item Estruturas de dados como Deques (Double-ended Queues): Deques permitem inserção e remoção de elementos tanto no início quanto no final da lista, e são frequentemente implementados usando listas duplamente encadeadas para garantir essa flexibilidade.
+\end{itemize}
+
+\subsection*{c) Outra variação: Listas Autorreferenciadas}
+
+Uma variação interessante são as listas autoajustáveis ou listas com acesso autoajustável. Nesses tipos de lista, a estrutura da lista é modificada com base nos padrões de acesso. Um exemplo clássico é a lista de transposição, onde um elemento acessado é movido para a frente da lista, de modo que os elementos mais frequentemente acessados fiquem mais próximos do início.
+
+\subsubsection{Características:}
+\begin{itemize}
+    \item Autoajuste dinâmico: A lista se ajusta dinamicamente com base 
+    na fre-quência de acessos. Elementos acessados frequentemente são 
+    movidos para o início da lista, melhorando o tempo de acesso para 
+    esses elementos.
+    \item Implementação flexível: Pode ser implementada tanto em listas 
+    encadea-das simples quanto em listas duplamente encadeadas, 
+    dependendo da necessidade de navegação.
+\end{itemize}
+
+\subsubsection{Vantagens:}
+\begin{itemize}
+    \item Melhora o tempo de acesso: Ao mover elementos frequentemente acessados para o início da lista, o tempo de acesso para esses elementos melhora consideravelmente em cenários onde certos elementos são usados mais do que outros.
+    \item Eficiência sem estrutura adicional: Não requer uma estrutura complexa como uma árvore balanceada ou tabela hash, mas ainda assim oferece um ganho significativo de desempenho em certos cenários de acesso.
+\end{itemize}
+
+\subsubsection{Aplicações:}
+\begin{itemize}
+    \item Sistemas de Cache: Listas autoajustáveis podem ser usadas em sistemas de cache, onde os dados mais acessados recentemente são movidos para o início da lista, melhorando o tempo de acesso futuro.
+
+    \item Compressão de dados: Algoritmos de compressão como o Move-To-Front (MTF) usam listas autoajustáveis para reordenar símbolos com base na frequência de uso, otimizando a compressão de dados.
+\end{itemize}
+
+\subsubsection{Fontes Consultadas}
+\begin{itemize}
+    \item https://chatgpt.com/
+\end{itemize}
+
+
+
+
+\end{document}
