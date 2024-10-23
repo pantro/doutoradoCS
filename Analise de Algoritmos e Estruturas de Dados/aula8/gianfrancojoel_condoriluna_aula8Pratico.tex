@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{tabularx} % Para tablas que se ajustan al ancho de la página
+\usepackage{booktabs} % Para líneas mejoradas en la tabla
+
+\renewcommand\thesubsection{\arabic{subsection}} % Hace que subsección use solo números (1, 2, 3, etc.)
+\setcounter{secnumdepth}{2} % Asegura que las subsecciones se numerarán
+
+\title{Aula 08 - Exercício prático Métodos de Pesquisa e Árvores AVL}
+\author{Aluno: Gian Franco Joel Condori Luna}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercices}
+\setcounter{section}{1}
+\subsection {(0,8) Insira aleatoriamente 100.000 elementos em um vetor, faça uma cópia dos
+valores e insira em um vetor ordenando-o, em uma árvore binária e em uma árvore
+AVL.}
+\begin{enumerate}[label=\alph*)]
+    \item Calcule o tempo de inserção dos 100.000 elementos em cada estrutura de dados.
+    \item Calcule o tempo de busca do elemento de valor 50 em cada estrutura de dados.
+    Mesmo se não existir esse elemento, reporte o tempo que levou para procurá-lo.
+    \item Calcule o tempo de busca do elemento de valor 50.000 em cada estrutura de
+    dados. Mesmo se não existir esse elemento, reporte o tempo que levou para
+    procurá-lo.
+\end{enumerate}
+
+\subsection*{Solução:}
+
+\begin{tabularx}{\textwidth}{|X|X|X|X|} 
+  \hline
+   & 
+   Tempo inserção 100.000 elementos & 
+   Tempo pesquisa o elemento 50 & 
+   Tempo pesquisa o elemento 50.000 \\ 
+  \hline
+  Vetor dados aleatórios & 0.003188 s  & 0.005875 s  & 0.007157 s  \\ \hline
+  Vetor ordenado + busca binária & 0.072296 s  & 0.000016 s  & 0.000011 s  \\ \hline
+  Árvore binária & 1.185774 s  & 0.000015 s  & 0.000009 s  \\ \hline
+  Árvore AVL & 2.764374 s  & 0.000013 s  & 0.000007 s  \\ \hline
+\end{tabularx}
+
+\subsection {(0,2) Calcule a altura da subárvore esquerda e direita da árvore binária e AVL do
+exercício anterior.}
+
+\subsection*{Solução:}
+
+\begin{tabularx}{\textwidth}{|X|X|X|} % 'X' ajusta el ancho de las columnas
+  \hline
+   & Altura subarvore esquerda & Altura subarvore direita \\ \hline
+   Árvore Binária & 41 & 32 \\ \hline
+   AVL & 18 & 18 \\ \hline
+\end{tabularx}
+
+\subsection*{Fontes Consultadas}
+\begin{itemize}
+    \item https://chatgpt.com/
+\end{itemize}
+
+
+
+
+\end{document}
