@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{tabularx} % Para tablas que se ajustan al ancho de la página
+\usepackage{booktabs} % Para líneas mejoradas en la tabla
+
+\renewcommand\thesubsection{\arabic{subsection}} % Hace que subsección use solo números (1, 2, 3, etc.)
+\setcounter{secnumdepth}{2} % Asegura que las subsecciones se numerarán
+
+\title{Aula 10 - Exercício prático Tabela Hash}
+\author{Aluno: Gian Franco Joel Condori Luna}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercices}
+\setcounter{section}{1}
+\subsection {(1,0) Implemente um algoritmo para função Hash que:}
+\begin{enumerate}[label=\alph*)]
+    \item Faz resolução de colisões por encadeamento com a função hash da divisão.
+    \item Faz resolução de colisões por endereçamento aberto usando sondagem linear.
+    \item Insira 100.000 elementos gerados aleatoriamente no intervalo [0-100.000] em uma
+    tabela hash com m = 50.000 posições no encadeamento e m = 100.000 no
+    endereçamento aberto e compute o tempo de inserção em cada caso. Depois pesquise
+    o elemento 10.000:
+\end{enumerate}
+
+\subsection*{Solução:}
+
+(O código está no arquivo python)
+\\
+
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|} 
+  \hline
+   \textbf{Hash por encadeamento} & 
+   \textbf{Hash por endereçamento aberto} \\ 
+  \hline
+  Tempo Inserção Função hash divisão: 0.0372 s  
+  & Tempo Inserção Sondagem Linear: 2.1680 s  
+  \\ \hline
+  Tempo Busca Função hash divisão: 0.000038 s  
+  & Tempo Busca Sondagem Linear: 0.000032 s  
+  \\ \hline
+\end{tabularx}
+\\
+\\Discussão:
+\begin{itemize}
+  \item \textbf{Tempo de Inserção:} A função hash com encadeamento levou significativamente menos tempo para inserir os elementos (0,0372 s) comparado ao método de endereçamento aberto com sondagem linear (2,1680 s).
+  Isso sugere que o encadeamento é mais eficiente para inserções quando a tabela hash tem um número elevado de elementos e há alta possibilidade de colisões.
+
+  \item \textbf{Tempo de Busca:} Para a busca, ambos os métodos apresentaram tempos de execução muito pequenos, com uma diferença mínima entre eles (0,000038 s para encadeamento e 0,000032 s para sondagem linear).
+  Embora o tempo de busca seja similar, isso indica que ambos os métodos são eficientes para buscas rápidas, mas o encadeamento ainda pode ser uma escolha mais vantajosa para um número elevado de inserções.
+  
+\end{itemize}
+
+
+\subsection*{Fontes Consultadas}
+\begin{itemize}
+    \item https://chatgpt.com/
+\end{itemize}
+
+
+
+
+\end{document}

@@ -1,0 +1,390 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}   % Suporte para codificação UTF-8
+\usetikzlibrary{positioning}
+
+\renewcommand\thesubsection{\arabic{subsection}} % Hace que subsección use solo números (1, 2, 3, etc.)
+\setcounter{secnumdepth}{2} % Asegura que las subsecciones se numerarán
+
+\title{AULA 10: Exercício teórico Tabelas Hash}
+\author{Aluno: Gian Franco Joel Condori Luna}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercices}
+\setcounter{section}{1}
+\subsection {(0,2) Mostre a inserção das chaves 5, 28, 19, 15, 20, 33, 12, 17, 10 em uma tabela hash
+com colisões resolvidas por encadeamento. Seja a tabela com 9 posições, e seja a
+função hash h(k) = k mod 9.}
+
+\subsubsection{Solução:}
+
+- \textbf{Posições:} \( m = 9 \).\\
+- \textbf{Função hash:} \( h(k) = k \mod 9 \).\\
+- \textbf{Chaves:} \(  5, 28, 19, 15, 20, 33, 12, 17, 10 \).
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Índice} & \textbf{Chaves} \\
+\hline
+0 &  \\
+1 &  \\
+2 &  \\
+3 &  \\
+4 &  \\
+5 &  \\
+6 &  \\
+7 &  \\
+8 &  \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+  \item Inserindo 5:
+    \begin{itemize}
+      \item \(5 \rightarrow h(5) = 5 \mod 9 = 5\)
+          
+      \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Índice} & \textbf{Chaves} \\
+        \hline
+        0 &  \\
+        1 &  \\
+        2 & \\
+        3 & \\
+        4 &  \\
+        5 & 5 \\
+        6 & \\
+        7 &  \\
+        8 & \\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+  \item Inserindo 28:
+    \begin{itemize}
+      \item \(28 \rightarrow h(28) = 28 \mod 9 = 1\)
+          
+      \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Índice} & \textbf{Chaves} \\
+        \hline
+        0 &  \\
+        1 & 28 \\
+        2 & \\
+        3 & \\
+        4 &  \\
+        5 & 5 \\
+        6 & \\
+        7 &  \\
+        8 & \\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+  \item Inserindo 19:
+    \begin{itemize}
+      \item \(19 \rightarrow h(19) = 19 \mod 9 = 1\) (colisão com 28)
+          
+      \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Índice} & \textbf{Chaves} \\
+        \hline
+        0 &  \\
+        1 & 28 $\rightarrow$ 19\\
+        2 & \\
+        3 & \\
+        4 &  \\
+        5 & 5 \\
+        6 & \\
+        7 &  \\
+        8 & \\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+  \item Inserindo 15:
+    \begin{itemize}
+      \item \(15 \rightarrow h(15) = 15 \mod 9 = 6\)
+          
+      \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Índice} & \textbf{Chaves} \\
+        \hline
+        0 &  \\
+        1 & 28 $\rightarrow$ 19\\
+        2 & \\
+        3 & \\
+        4 &  \\
+        5 & 5 \\
+        6 & 15\\
+        7 &  \\
+        8 & \\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+  \item Inserindo 20:
+    \begin{itemize}
+      \item \(20 \rightarrow h(20) = 20 \mod 9 = 2\)
+          
+      \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Índice} & \textbf{Chaves} \\
+        \hline
+        0 &  \\
+        1 & 28 $\rightarrow$ 19\\
+        2 & 20\\
+        3 & \\
+        4 &  \\
+        5 & 5 \\
+        6 & 15\\
+        7 &  \\
+        8 & \\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+  \item Inserindo 33:
+    \begin{itemize}
+      \item \(33 \rightarrow h(33) = 33 \mod 9 = 6\) (colisão com 15)
+          
+      \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Índice} & \textbf{Chaves} \\
+        \hline
+        0 &  \\
+        1 & 28 $\rightarrow$ 19\\
+        2 & 20\\
+        3 & \\
+        4 &  \\
+        5 & 5 \\
+        6 & 15 $\rightarrow$ 33\\
+        7 &  \\
+        8 & \\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+  \item Inserindo 12:
+    \begin{itemize}
+      \item \(12 \rightarrow h(12) = 12 \mod 9 = 3\)
+          
+      \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Índice} & \textbf{Chaves} \\
+        \hline
+        0 &  \\
+        1 & 28 $\rightarrow$ 19\\
+        2 & 20\\
+        3 & 12\\
+        4 &  \\
+        5 & 5 \\
+        6 & 15 $\rightarrow$ 33\\
+        7 &  \\
+        8 & \\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+  \item Inserindo 17:
+    \begin{itemize}
+      \item \(17 \rightarrow h(17) = 17 \mod 9 = 8\)
+          
+      \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Índice} & \textbf{Chaves} \\
+        \hline
+        0 &  \\
+        1 & 28 $\rightarrow$ 19\\
+        2 & 20\\
+        3 & 12\\
+        4 &  \\
+        5 & 5 \\
+        6 & 15 $\rightarrow$ 33\\
+        7 &  \\
+        8 & 17\\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+  \item Inserindo 10:
+    \begin{itemize}
+      \item \(10 \rightarrow h(10) = 10 \mod 9 = 1\) (colisão com 28 e 19)
+          
+      \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Índice} & \textbf{Chaves} \\
+        \hline
+        0 &  \\
+        1 & 28 $\rightarrow$ 19 $\rightarrow$ 10\\
+        2 & 20\\
+        3 & 12\\
+        4 &  \\
+        5 & 5 \\
+        6 & 15 $\rightarrow$ 33\\
+        7 &  \\
+        8 & 17\\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+\end{enumerate}
+
+\subsection {(0,2) (0,2) Considere uma tabela hash de tamanho m = 1000 e a função hash
+correspondente h(k) igual a $
+   h(k) = \lfloor m \cdot (k \cdot A \mod 1) \rfloor
+   $
+para A = $ \quad A = \frac{\sqrt{5} - 1}{2}$.
+Calcule as localizações para as quais as chaves 61, 62, 63, 64 e 35 estão mapeadas.}
+
+\subsubsection{Solução:}
+
+- \textbf{Tamanho:} $ m = 1000$ \\
+- \textbf{h(k) = } $ \lfloor m \cdot (k \cdot A \mod 1) \rfloor
+   $\\
+- \textbf{A = } $ \frac{\sqrt{5} - 1}{2} \approx 0.6180339887
+   $
+
+   \begin{itemize}
+       \item Calculando para \( k = 61 \):
+       \[
+       h(61) = \lfloor 1000 \cdot (61 \cdot A \mod 1) \rfloor = \lfloor 699.0733 \rfloor = 699
+       \]
+
+       \item Calculando para \( k = 62 \):
+       \[
+       h(62) = \lfloor 1000 \cdot (62 \cdot A \mod 1) \rfloor = \lfloor 317.1073 \rfloor = 317
+       \]
+
+       \item Calculando para \( k = 63 \):
+       \[
+       h(63) = \lfloor 1000 \cdot (63 \cdot A \mod 1) \rfloor = \lfloor 935.1413 \rfloor = 935
+       \]
+
+       \item Calculando para \( k = 64 \):
+       \[
+       h(64) = \lfloor 1000 \cdot (64 \cdot A \mod 1) \rfloor = \lfloor 553.1752 \rfloor = 553
+       \]
+
+       \item Calculando para \( k = 35 \):
+       \[
+       h(35) = \lfloor 1000 \cdot (35 \cdot A \mod 1) \rfloor = \lfloor 631.1896 \rfloor = 631
+       \]
+   \end{itemize}
+
+\subsection {(0,6) Considere a inserção das chaves 10, 22, 31, 4, 15, 28, 17, 88, 59 em uma tabela
+hash de comprimento m = 11 usando o endereçamento aberto com a função hash
+primário h(k) = k mod m.
+Ilustre o resultado da inserção dessas chaves com:}
+\begin{enumerate}[label=\alph*)]
+  \item O uso da sondagem linear
+  \item O uso da sondagem quadrática com c1 = 1 e c2 = 3
+  \item O uso do hash duplo com $ h2(k) = 1 + (k \mod (m - 1))$
+\end{enumerate}
+
+\subsubsection{Solução:}
+
+\begin{enumerate}[label=\alph*)]
+  \item \textbf{Inserção com Sondagem Linear}
+  \\\\
+    Função de tentativa é dada por:
+    \[
+    h_i(k) = (h(k) + i) \mod 11
+    \]
+    onde \(i\) representa o número de colisões já ocorridas.
+
+    Na tabela está o processo de inserção das chaves com a sondagem linear:
+
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    Chave \(k\) & \(h(k)\) & Tentativas & Posição Final \\
+    \hline
+    10 & \(10 \mod 11 = 10\) & 0 & 10 \\
+    22 & \(22 \mod 11 = 0\) & 0 & 0 \\
+    31 & \(31 \mod 11 = 9\) & 0 & 9 \\
+    4 & \(4 \mod 11 = 4\) & 0 & 4 \\
+    15 & \(15 \mod 11 = 4\) & 1 & 5 \\
+    28 & \(28 \mod 11 = 6\) & 0 & 6 \\
+    17 & \(17 \mod 11 = 6\) & 1 & 7 \\
+    88 & \(88 \mod 11 = 0\) & 1 & 1 \\
+    59 & \(59 \mod 11 = 4\) & 2 & 8 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+  \item \textbf{Inserção com Sondagem Quadrática}
+  \\\\
+  Para a sondagem quadrática, usamos a função:
+  \[
+  h_i(k) = (h(k) + c_1 \cdot i + c_2 \cdot i^2) \mod 11
+  \]
+  com \(c_1 = 1\) e \(c_2 = 3\).
+  
+  \begin{center}
+  \begin{tabular}{|c|c|c|c|}
+  \hline
+  Chave \(k\) & \(h(k)\) & Tentativas & Posição Final \\
+  \hline
+  10 & 10 & 0 & 10 \\
+  22 & 0 & 0 & 0 \\
+  31 & 9 & 0 & 9 \\
+  4 & 4 & 0 & 4 \\
+  15 & 4 & 1 & 8 \\
+  28 & 6 & 0 & 6 \\
+  17 & 6 & 1 & 10 \\
+  88 & 0 & 1 & 4 (colisão) \\
+  88 & 0 & 2 & 0 (colisão) \\
+  88 & 0 & 3 & 5 \\
+  59 & 4 & 1 & 8 (colisão) \\
+  59 & 4 & 2 & 1 \\
+  \hline
+  \end{tabular}
+  \end{center}
+  
+  \item \textbf{Inserção com Hash Duplo}
+  \\\\
+    Para o hash duplo, a função é:
+    \[
+    h_i(k) = (h(k) + i \cdot h_2(k)) \mod 11
+    \]
+    onde \(h_2(k) = 1 + (k \mod (m - 1))\).
+
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Chave \(k\) & \(h(k)\) & \(h_2(k)\) & Tentativas & Posição Final \\
+    \hline
+    10 & 10 & 2 & 0 & 10 \\
+    22 & 0 & 4 & 0 & 0 \\
+    31 & 9 & 5 & 0 & 9 \\
+    4 & 4 & 5 & 0 & 4 \\
+    15 & 4 & 8 & 1 & 1 \\
+    28 & 6 & 3 & 0 & 6 \\
+    17 & 6 & 10 & 1 & 7 \\
+    88 & 0 & 1 & 1 & 1 (colisão) \\
+    88 & 0 & 1 & 2 & 2 \\
+    59 & 4 & 6 & 1 & 8 \\
+    \hline
+    \end{tabular}
+    \end{center}
+\end{enumerate}
+
+\end{document}
