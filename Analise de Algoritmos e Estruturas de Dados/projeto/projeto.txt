@@ -1,0 +1,6 @@
+Video: https://youtu.be/x42SpQgWYfQ
+
+REFERENCIAS
+- https://geoffboeing.com/publications/osmnx-paper/
+- https://www.youtube.com/watch?v=oMgfGkFSgI0
+- https://github.com/santifiorino/maps-pathfinding
